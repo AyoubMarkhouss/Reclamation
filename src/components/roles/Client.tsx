@@ -2,8 +2,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Logo from "/public/Conseil national.png";
-import { UserButton, UserProfile } from "@clerk/nextjs";
-import { SignOutButton } from "@clerk/nextjs";
+import { UserButton} from "@clerk/nextjs";
+
 import Image from "next/image";
 import BankCard from "../ui/BankCard";
 import AncfccCard from "../ui/AncfccCard";

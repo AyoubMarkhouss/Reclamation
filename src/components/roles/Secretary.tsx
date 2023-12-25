@@ -1,7 +1,7 @@
 import { api } from "@/utils/api";
 import React from "react";
 import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
-import { SignOutButton, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import Logo from "/public/Conseil national.png";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
