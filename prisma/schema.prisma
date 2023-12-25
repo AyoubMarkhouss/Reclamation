@@ -1,0 +1,50 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model Users {
+    id               String    @id @default(uuid())
+    fullName         String
+    address          String
+    phoneNumber      String
+    role             String?
+    confirmed        Boolean   @default(false)
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+    confirmationCode Int?      @unique
+    Reports          Reports[]
+}
+
+model Reports {
+    id                String    @id @default(uuid())
+    reportRadio       String
+    reportList        String?   
+    reportObjet       String 
+    reportDetails     String    @db.LongText
+    Users             Users     @relation(fields: [usersId], references: [id])
+    usersId           String
+    Respond           Respond[]
+    createdAt         DateTime  @default(now())
+    answered          Boolean   @default(false)
+    ignore            Boolean   @default(false)
+    option            String 
+
+    @@index([usersId])
+}
+
+model Respond {
+    id         String   @id @default(uuid())
+    replyLable String
+    respond    String   @db.LongText
+    Reports    Reports  @relation(fields: [reportsId], references: [id])
+    reportsId  String
+    createdAt  DateTime @default(now())
+
+    @@index([reportsId])
+}

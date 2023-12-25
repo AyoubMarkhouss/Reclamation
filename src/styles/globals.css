@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  
+* {@apply border-border;}
+body {@apply bg-background text-foreground;}
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulsing-notification {
+  position: relative;
+  margin: 10px;
+}
+
+.notification-circle {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  animation: pulse 1s infinite;
+  z-index: 500;
+}
+
+/***/
+.credentialing {
+  --bg-color: #53f195;
+  --bg-color-light: #e2fced;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(184, 249, 211, 0.48);
+}
+
+.card {
+  width: 240px;
+  height: 240px;
+  background: #fff;
+
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.403);
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow:
+    0 24px 36px rgba(0, 0, 0, 0.11),
+    0 24px 46px var(--box-shadow-color);
+}
+
+.card:hover .overlay {
+  transform: scale(4) translateZ(0);
+}
+
+.card:hover .circle {
+  border-color: var(--bg-color-light);
+  background: var(--bg-color);
+}
+
+.card:hover .circle:after {
+  background: var(--bg-color-light);
+}
+
+.card:hover p {
+  color: var(--text-color-hover);
+}
+
+.card:active {
+  transform: scale(1) translateZ(0);
+  box-shadow:
+    0 15px 24px rgba(0, 0, 0, 0.11),
+    0 15px 24px var(--box-shadow-color);
+}
+
+.card p {
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #4c5656;
+  margin-top: 10px;
+  z-index: 1000;
+  transition: color 0.3s ease-out;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.circle {
+  width: 131px;
+  height: 131px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-out;
+}
+
+.circle:after {
+  content: "";
+  width: 118px;
+  height: 118px;
+  display: block;
+  position: absolute;
+  background: var(--bg-color);
+  border-radius: 50%;
+  transition: opacity 0.3s ease-out;
+}
+
+.circle svg {
+  z-index: 10000;
+  transform: translateZ(0);
+}
+
+.overlay {
+  width: 118px;
+  position: absolute;
+  height: 118px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  top: 35px;
+  left: 50px;
+  z-index: 0;
+  transition: transform 0.3s ease-out;
+}
+
+@media only screen and (max-width: 767px) {
+  .card {
+    width: 340px;
+    height: 120px;
+    background: #fff;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.403);
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+    margin-top: 15px;
+  }
+  .card:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow:
+      0 24px 36px rgba(0, 0, 0, 0.11),
+      0 24px 46px var(--box-shadow-color);
+  }
+
+  .card:hover .overlay {
+    transform: scale(4) translateZ(0);
+  }
+
+  .card:hover .circle {
+    border-color: var(--bg-color-light);
+    background: var(--bg-color);
+  }
+
+  .card:hover .circle:after {
+    background: var(--bg-color-light);
+  }
+
+  .card:hover p {
+    color: var(--text-color-hover);
+  }
+  .card:active {
+    transform: scale(1) translateZ(0);
+    box-shadow:
+      0 15px 24px rgba(0, 0, 0, 0.11),
+      0 15px 24px var(--box-shadow-color);
+  }
+
+  .card p {
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    color: #4c5656;
+    z-index: 1000;
+    transition: color 0.3s ease-out;
+
+    font-weight: 900;
+  }
+
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease-out;
+  }
+
+  .circle:after {
+    content: "";
+    width: 90px;
+    height: 90px;
+    display: block;
+    position: absolute;
+    background: var(--bg-color);
+    border-radius: 50%;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .overlay {
+    width: 100px;
+    position: absolute;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    top: 10px;
+    left: 23px;
+    z-index: 0;
+    transition: transform 0.3s ease-out;
+  }
+}
+
